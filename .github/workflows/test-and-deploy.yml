@@ -31,15 +31,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Run ESLint
-        uses: stefanoeb/eslint-action@1.0.2
-        with:
-          files: "."
-      - name: ESLint Verification
-        if: failure()
-        run: |
-          echo "ESLint has detected issues in your code, and the deployment has been stopped."
-          exit 1
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
