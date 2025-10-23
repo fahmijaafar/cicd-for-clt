@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+  <style>
+    /* General styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #4CAF50;
+    }
+
+    /* Center content */
+    .container {
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    h3 {
+      color: #4CAF50;
+    }
+
+    #result {
+      font-size: 20px;
+      color: #555;
+      text-align: center;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Simple Calculator</h1>
+  
+  <div class="container">
+    <!-- Input Fields -->
+    <label for="num1">Number 1:</label>
+    <input type="number" id="num1" placeholder="Enter first number">
+    
+    <label for="num2">Number 2:</label>
+    <input type="number" id="num2" placeholder="Enter second number">
+    
+    <!-- Dropdown For Selecting Operation -->
+    <label for="operation">Choose Operation:</label>
+    <select id="operation">
+      <option value="+">Addition (+)</option>
+      <option value="-">Subtraction (-)</option>
+      <option value="*">Multiplication (*)</option>
+      <option value="/">Division (/)</option>
+    </select>
+    
+    <!-- Button to Trigger Calculation -->
+    <button onclick="calculateResult()">Calculate</button>
+
+    <h3>Result:</h3>
+    <!-- Output Section -->
+    <div id="result">The result will be displayed here.</div>
+  </div>
+
+  <!-- JavaScript Section -->
+  <script>
+    // Function to calculate the result based on inputs and selected operation
+    function calculateResult() {
+      // Get the values of the input fields and the operation
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+      const operation = document.getElementById('operation').value;
+
+      let result;
+
+      // Validate inputs
+      if (isNaN(num1) || isNaN(num2)) {
+        document.getElementById('result').innerText = "Please enter valid numbers.";
+        return;
+      }
+
+      // Perform the selected operation
+      switch (operation) {
+        case '+': result = num1 + num2; break;
+        case '-': result = num1 - num2; break;
+        case '*': result = num1 * num2; break;
+        case '/':
+          if (num2 !== 0) {
+            result = num1 / num2;
+          } else {
+            result = "Error: Division by zero!";
+          }
+          break;
+        default: result = "Invalid operation.";
+      }
+
+      // Display the result
+      document.getElementById('result').innerText = "Result: " + result;
+    }
+  </script>
+</body>
+</html>
